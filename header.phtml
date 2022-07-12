@@ -1,0 +1,215 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$customerSession = $objectManager->get('Magento\Customer\Model\Session');
+?>
+<div class="hptx-modal-wrapper" style="display:none !important;">
+    <div class="hptx-modal-container">
+        <div class="hptx-modal-image"></div>
+        <div class="hptx-modal-info">
+            <div style="text-align: center;">
+                <h3>#YoLeoEnCasa</h3>
+                <h4><em>Somos huella de confianza</em></h4>
+            </div>
+            <p>Todas las compras en línea de contenidos electrónicos y aprobadas se procesan automáticamente las 24
+                horas del día, puedes acceder a ellas en cualquier momento.</p>
+            <p>También puedes seguir efectuando compras de materiales impresos en distintas modalidades, teniendo en
+                cuenta que se despacharán o gestionarán una vez se supere la etapa de aislamiento preventivo
+                obligatorio. Icontec te dará acceso virtual por tiempo limitado sobre los productos que compres en
+                formato impreso.</p>
+            <p>¡Feliz lectura!</p>
+            <a href="javascript:void(0)" class="btn  btn-primary" id="close-modal-news">Estoy de acuerdo</a>
+        </div>
+    </div>
+</div>
+<div class="hptx-modal-overlay"></div>
+<div class="main-bar-wrapper" style="display:none !important;">
+    <div class="main-bar-container">
+        <div class="main-bar-information">
+            <p style="font-size:16px;"><b style="font-weight:900;color:var(--main-color-actions--);">#YoLeoEnCasa</b> |
+                Información importante sobre los despachos de normas y publicaciones impresas y compra de ebooks</p>
+        </div>
+        <div class="main-bar-actions">
+            <ul>
+                <li><a href="javascript:void(0)" id="hptx-view-notice">Revisar</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="ico-nav-container">
+    <div class="ico-circle-header-container">
+        <div class="ico-circle"></div>
+    </div>
+    <div class="container">
+        <div class="nav-container">
+            <div class="ico-logo-container">
+                <?php echo $this->getChildHtml("logo"); ?>
+            </div>
+            <ul class="top-mobile-menu-items hidden-md hidden-lg">
+                <li class="ico-mobile-institutional-menu-btn">
+                    <a href="javascript:void(0)">
+                        <span><i class="ico-icontec icontec-1002-ellipsis"></i></span>
+                    </a>
+                </li>
+            </ul>
+            <div class="ico-navigation-container">
+                <div class="ico-top-navigation">
+                    <ul>
+                        <li><strong>Bienvenid@ <?=$customerSession->getCustomer()->getName();?> a nuestra Tienda virtual</strong></li>
+                        <?php /*echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('ico-institutional-top-navigation')->toHtml(); */ ?>                        
+                        <li><a class="ico-help-button-main-menu" title="Atención al cliente">Atención al cliente</a></li>
+                        <li><a title="Portal corporativo" href="https://icontec.org/" target="_blank" rel="noopener">Portal Icontec</a></li>
+                    </ul>
+                    <div class="wrapper-menu-currency">
+                        <p class="item">Selecciona la moneda con la que deseas comprar: </p><?php echo $this->getChildHtml("currency.icontec"); ?>
+                    </div>
+                </div>
+                <!-- <? /*php  echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('ico-institutional-main-navigation')->toHtml();*/ ?>  -->
+                <div class="ico-categories-menu-mobile">
+                    <ul>
+                        <?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('ico-auxiliar-store-navigation')->toHtml(); ?>
+                        <?php /* echo $this->getChildHtml("catalog.topnav"); */ ?>
+                    </ul>
+                </div>
+            </div>
+            <!--
+            <div class="mobile-navigation-btn" class="display:none;">
+                <ul>
+                    <li><span class="ico-mobile-menu"><i class="ico-icontec icontec-0816-menu2"></i></span></li>
+                    <li><span class="ico-mobile-menu"><i class="ico-icontec icontec-1002-ellipsis"></i></span></li>
+                    <li><span class="ico-mobile-search-container"><i class="ico-icontec icontec-0803-magnifier"></i></span></li>
+                    <li><span><i class="ico-icontec icontec-0333-bag2"></i></span></li>
+                    <li><span class="ico-mobile-account-container"><i class="ico-icontec icontec-0287-user"></i></span></li>
+                </ul>
+            </div>
+        -->
+            <div class="ico-mobile-menu">
+                <ul class="ico-mobile-toggle-wrapper-nav">
+                    <li class="ico-mobile-currency-btn">
+                        <?php echo $this->getChildHtml("currency.icontec"); ?>
+                    </li>
+                    <li class="ico-mobile-consult-btn">
+                        <a href="<?= $this->getBaseUrl(); ?>sala-de-consulta">
+                            <span><i class="far fa-eye"></i></span>
+                        </a>
+                    </li>
+                    <li class="ico-mobile-search-btn">
+                        <a href="javascript:void(0)">
+                            <span><i class="ico-icontec icontec-0803-magnifier"></i></span>
+                        </a>
+                    </li>
+                    <li class="ico-mobile-cart-btn">
+                        <a href="<?= $this->getBaseUrl(); ?>checkout/cart">
+                            <span><i class="ico-icontec icontec-0333-bag2"></i></span>
+                        </a>
+                    </li>
+                    <li class="ico-mobile-account-btn">
+                        <a href="javascript:void(0)">
+                            <span><i class="ico-icontec icontec-0287-user"></i></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <?php echo $this->getChildHtml("topSearch"); ?>
+        <div class="ico-cart-mobile-container"></div>
+        <div class="ico-account-mobile-container">
+            <strong>Mi Cuenta</strong>
+            <ul>
+                <?php echo $this->getLayout()->createBlock("Magento\Framework\View\Element\Template")->setTemplate("Magento_Theme::html/header/user-account-links.phtml")->toHtml();?>
+            </ul>
+        </div>
+        <!--     <div class="ico-categories-menu-mobile">
+        <ul>
+            <?php  echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('ico-auxiliar-store-navigation')->toHtml(); ?>
+            <?php echo $this->getChildHtml("catalog.topnav"); ?>
+        </ul>
+    </div> -->
+    </div>
+</div>
+<div class="ico-store-nav">
+    <div class="container">
+        <div class="ico-categories-menu">
+            <a href="/sectores.html">
+                <span><i class="ico-icontec icontec-0816-menu2"></i><?= __('Normas por categoría')?></span>
+            </a>
+            <ul>
+                <?php echo $this->getChildHtml("catalog.topnav"); ?>
+            </ul>
+        </div>
+        <?php  echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('ico-auxiliar-store-navigation')->toHtml(); ?>
+        <div class="ico-user-fixed-actions">
+            <?php /* echo $this->getChildHtml("currency.icontec"); */ ?>
+            <div class="ico-search-container"><i class="ico-icontec icontec-0803-magnifier"></i></div>
+            <?php echo $this->getChildHtml("minicart"); ?>
+            <div class="ico-account-container ico-dropdown">
+                <i class="ico-icontec icontec-0287-user"></i>
+                <ul>
+                    <?php echo $this->getLayout()->createBlock("Magento\Framework\View\Element\Template")->setTemplate("Magento_Theme::html/header/user-account-links.phtml")->toHtml();?>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<?php
+if($customerSession->isLoggedIn()) {
+    $customerData = $customerSession->getCustomer()->getData();
+    $idGroup = $customerData['group_id'];
+    
+}else{
+    $idGroup = 100;
+}
+$mainMessage10 = 'Bienvenido a nuestro catálogo, por ser cliente nuevo registrado a partir del 12 de febrero de 2020, tienes un 10% de descuento para la primera compra de normas o publicaciones.';
+$mainMessage20 = 'Por ser un cliente antiguo registrado hasta el 11 de febrero de 2020, tienes un 20% de descuento para la primera compra de normas o publicaciones';
+$modalMessage10 = 'Aplica únicamente para la primera compra de normas o publicaciones en tienda.icontec.org, oferta válida hasta el 31 de junio de 2020. No acumulable con otras promociones. No acumulable con otras promociones. No aplica para compra de Cursos, Diplomados, Foros, Eventos o Programas de la oferta de Educación ni para Servicios o Auditorías.';
+$modalMessage20 = 'Aplica únicamente para la primera compra de normas o publicaciones en tienda.icontec.org, solo para clientes registrados al 11 de febrero de 2020. Oferta válida hasta el 31 de junio de 2020. No acumulable con otras promociones. No acumulable con otras promociones. No aplica para compra de Cursos, Diplomados, Foros, Eventos o Programas de la oferta de Educación ni para Servicios o Auditorías.';
+$mainMessageGeneral = "Obtén 10% de descuento para la primera compra de normas o publicaciones si eres usuario nuevo o inicia sesión y obtén un 20% de descuento si eres usuario registrado al 11 de febrero de 2020";
+$modalMessageGeneral = "Aplica 10% de descuento únicamente para la primera compra de normas o publicaciones en tienda.icontec.org, por ser cliente nuevo registrado a partir del 12 de febrero de 2020. Aplica 20% de descuento únicamente para única compra de normas o publicaciones para clientes registrados hasta 11 de febrero de 2020 en tienda.icontec.org. Oferta válida hasta el 31 de junio de 2020. No acumulable con otras promociones. No aplica para compra de Cursos, Diplomados, Foros, Eventos o Programas de la oferta de Educación ni para Servicios o Auditorías.";
+
+?>
+<div class="alert-promo-message" style="display:none;">
+    <div class="container">
+        <p> <?php if($idGroup==6){ echo $mainMessage20; }  if($idGroup==0 || $idGroup==1){ echo $mainMessage10; } if($idGroup==100){ echo $mainMessageGeneral; } ?>,
+            aplican <a href="javascript:void(0)" id="open-promo-modal">términos y condiciones</a></p>
+    </div>
+</div>
+<div class="alert-promo-modal">
+    <h3>Términos y condiciones de la promoción</h3>
+    <p> <?php if($idGroup==6){ echo $modalMessage20; }  if($idGroup==100){ echo $modalMessageGeneral; } if($idGroup==0 || $idGroup==1){ echo $modalMessage10; } ?>
+    </p>
+</div>
+<div class="alert-promo-overlay"></div>
+<script>
+require(['jquery'], function($) {
+    $('#open-promo-modal').click(function() {
+        $('.alert-promo-modal').addClass('active');
+        $('.alert-promo-overlay').addClass('active');
+    });
+    $('.alert-promo-overlay').click(function() {
+        $(this).removeClass('active');
+        $('.alert-promo-modal').removeClass('active');
+    });
+    jQuery(document).ready(function() {
+        if (document.cookie.indexOf("ModalShown=true") < 0) {
+            jQuery('.hptx-modal-container').addClass('active');
+            jQuery('.hptx-modal-overlay').addClass('active');
+            document.cookie = "ModalShown=true; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
+        }
+        jQuery('.hptx-modal-overlay').click(function() {
+            jQuery(this).removeClass('active')
+            jQuery('.hptx-modal-container').removeClass('active')
+        });
+        jQuery('#hptx-view-notice').click(function() {
+            jQuery('.hptx-modal-container').addClass('active');
+            jQuery('.hptx-modal-overlay').addClass('active');
+        });
+        jQuery('#close-modal-news').click(function() {
+            jQuery('.hptx-modal-overlay').removeClass('active')
+            jQuery('.hptx-modal-container').removeClass('active')
+        });
+    });
+});
+</script>
+<div class="ico-box-search-overlay"></div>
+<script type="text/javascript">
+require(['bootstrap', 'jquery']);
+</script>
